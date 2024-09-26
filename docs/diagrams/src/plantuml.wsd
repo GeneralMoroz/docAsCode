@@ -1,0 +1,49 @@
+@startuml UC
+
+title Онлайн бронирование гостиниц.
+
+actor Клиент as A1
+actor Менеджер as A2
+actor Арендодатель as A3
+
+(Разместить объявление) as UC1
+(Принять заказ) as UC2
+(Принять подтверждение от клиента) as UC3
+(Принять оплату) as UC4
+(Перевести оплату) as UC5
+(Проинформировать клиента о статусе бронирования) as UC6
+(Проинформировать арендодателя о статусе бронирования) as UC7
+(Отменить заказ) as UC8
+
+
+A1 -->UC3
+A1 -->UC6
+A1 -->UC8
+
+A2 -->UC1
+A2 -->UC2
+A2 -->UC5
+A2 -->UC8
+
+A3 -->UC7
+A3 -->UC8
+
+UC2 <.. UC3: Extend
+UC3 <.. UC4: Extend
+
+UC2 ..>UC6:Include
+UC2 ..>UC7:Include
+
+UC3 ..>UC7:Include
+
+UC4 ..>UC6:Include
+UC4 ..>UC7:Include
+
+UC5 ..>UC6:Include
+
+UC8 ..>UC6:Include
+UC8 ..>UC7:Include
+@enduml
+
+
+
